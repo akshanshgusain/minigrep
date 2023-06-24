@@ -1,0 +1,20 @@
+Execution Context:
+
+User-level threads: User-level threads are managed by the application or user-level thread library without direct intervention from the operating system kernel. Each user-level thread maintains its own execution context, including stack, program counter, and registers.
+Kernel-level threads: Kernel-level threads are managed and supported by the operating system kernel. Each kernel-level thread is assigned its own execution context by the kernel, which includes stack, program counter, and registers.
+Creation and Management:
+
+User-level threads: User-level threads are created, scheduled, and managed by the user-level thread library or the application itself. The operating system kernel is unaware of the existence of user-level threads and treats the application as a single process.
+Kernel-level threads: Kernel-level threads are created, scheduled, and managed by the operating system kernel. The kernel provides system calls or APIs for thread creation, scheduling, and synchronization. The kernel has full knowledge and control over kernel-level threads.
+Concurrency and Parallelism:
+
+User-level threads: User-level threads are suitable for applications that require concurrency but not parallelism. If a user-level thread blocks, it blocks the entire process, including all the other threads in that process. User-level threads can only be executed on a single processor/core.
+Kernel-level threads: Kernel-level threads provide true parallelism, as they can be executed simultaneously on multiple processors/cores. If a kernel-level thread blocks, the kernel can schedule another thread for execution. Thus, blocking one kernel-level thread does not block the entire process.
+Scheduling:
+
+User-level threads: Scheduling of user-level threads is done by the user-level thread library or the application. The operating system kernel is not involved in the scheduling decisions for user-level threads. The scheduling algorithm used is specific to the thread library or application.
+Kernel-level threads: Scheduling of kernel-level threads is managed by the operating system kernel. The kernel uses its own scheduling algorithm to determine which threads should run and for how long. Kernel-level threads are subject to preemption by the kernel.
+System Calls and Blocking:
+
+User-level threads: Since the operating system kernel is unaware of user-level threads, a system call made by a user-level thread may block the entire process, including all the threads within it. If one user-level thread blocks, it affects the progress of other threads in the process.
+Kernel-level threads: Kernel-level threads can make system calls independently. If one kernel-level thread makes a blocking system call, the kernel can schedule another thread for execution, allowing other threads to make progress.
